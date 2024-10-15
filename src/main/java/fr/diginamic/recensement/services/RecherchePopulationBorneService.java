@@ -71,7 +71,6 @@ public class RecherchePopulationBorneService extends MenuService {
             throw new IllegalArgumentException("Le code département " + choix + " est inconnu.");
         }
 
-        // Process and display the matching cities
         boolean found = false;
         for (Ville ville : villes) {
             if (ville.getCodeDepartement().equalsIgnoreCase(choix)) {
