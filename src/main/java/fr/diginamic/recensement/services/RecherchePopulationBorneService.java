@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import fr.diginamic.recensement.entites.Recensement;
 import fr.diginamic.recensement.entites.Ville;
+import org.apache.commons.lang3.math.NumberUtils;
 
 /**
  * Recherche et affichage de toutes les villes d'un département dont la
@@ -27,6 +28,19 @@ public class RecherchePopulationBorneService extends MenuService {
 		
 		System.out.println("Choississez une population maximum (en milliers d'habitants): ");
 		String saisieMax = scanner.nextLine();
+
+
+		//-> Renvoyez une exception avec un message clair dans tous les cas suivants :
+
+		//o si l’utilisateur saisit une lettre au lieu de chiffres pour le min ?
+		if (!NumberUtils.isParsable(saisieMin)) {
+			throw new IllegalArgumentException("La population minimum doit être un nombre.");
+		}
+		// o si l’utilisateur saisit une lettre au lieu de chiffres pour le max ?
+		if (!NumberUtils.isParsable(saisieMax)) {
+			throw new IllegalArgumentException("La population maximum doit être un nombre.");
+		}
+
 
 		int min = Integer.parseInt(saisieMin) * 1000;
 		int max = Integer.parseInt(saisieMax) * 1000;
